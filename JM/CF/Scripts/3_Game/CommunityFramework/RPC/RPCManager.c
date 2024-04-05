@@ -185,6 +185,24 @@ class RPCManager
 
 		return true;
 	}
+
+	bool RemoveRPC( string modName, string funcName )
+	{
+		#ifdef CF_TRACE_ENABLED
+		auto trace = CF_Trace_2(this).Add(modName).Add(funcName);
+		#endif
+
+		if ( m_RPCActions.Contains( modName ) )
+		{
+			if ( m_RPCActions[ modName ].Contains( funcName ) )
+			{
+				m_RPCActions[ modName ].Remove( funcName );
+				return true;
+			}
+		}
+
+		return false;
+	}
 };
 
 static ref RPCManager g_RPCManager;

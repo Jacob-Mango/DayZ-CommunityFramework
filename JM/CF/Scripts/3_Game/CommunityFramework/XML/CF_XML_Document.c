@@ -52,9 +52,9 @@ class CF_XML_Document : CF_XML_Element
 		}
 
 		bool isQuoted;
-		string name = _reader.GetWord();
+		string name = _reader.GetWord({ "-" });
 		string eq = _reader.GetCharacter();
-		string value = _reader.GetQuotedWord(isQuoted);
+		string value = _reader.GetQuotedWord({ "-" }, isQuoted);
 
 		if (eq != "=")
 		{
@@ -91,7 +91,7 @@ class CF_XML_Document : CF_XML_Element
 			c = _reader.GetCharacter();
 			if (c == "/")
 			{
-				tagName = _reader.GetWord();
+				tagName = _reader.GetWord({ "-" });
 
 				if (_currentTag == NULL)
 				{
@@ -115,7 +115,7 @@ class CF_XML_Document : CF_XML_Element
 			else
 				isProcessingInstruction = true;
 
-			tagName = _reader.GetWord();
+			tagName = _reader.GetWord({ "-" });
 
 			CreateTag(tagName, isProcessingInstruction);
 
@@ -170,7 +170,7 @@ class CF_XML_Document : CF_XML_Element
 						_reader.Err("Expected '/' for inline closing tag, got: " + c);
 					}
 
-					tagName = _reader.GetWord();
+					tagName = _reader.GetWord({ "-" });
 					
 					if (tagName != _currentTag.GetName())
 					{

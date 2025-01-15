@@ -151,7 +151,6 @@ class CF_XML_Tag : Managed
 		}
 		else
 		{
-			FPrint(handle, " ");
 			if (_isProcessingInstruction)
 				FPrint(handle, "?>\n");
 			else

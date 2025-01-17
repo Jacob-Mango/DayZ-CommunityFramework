@@ -1,4 +1,26 @@
-//! @brief a collection of doubly linked nodes (doubly linked list)
+/**
+ * @brief a collection of doubly linked nodes (doubly linked list)
+ * 
+ * @code
+ *  class Example
+ *  {
+ *      static ref CF_DoublyLinkedNodes<Example> s_All = new CF_DoublyLinkedNodes<CarScript>();
+ * 
+ *      ref CF_DoublyLinkedNode<Example> m_Node;
+ *  
+ *      void Example()
+ *      {
+ *          m_Node = s_All.Add(this);
+ *      }
+ *  
+ *      void ~Example()
+ *      {
+ *          if (s_All)
+ *              s_All.Remove(m_Node);
+ *      }
+ *  }
+ * @endcode
+*/
 class CF_DoublyLinkedNodes<Class T>
 {
 	ref CF_DoublyLinkedNode<T> m_Head;
@@ -20,6 +42,9 @@ class CF_DoublyLinkedNodes<Class T>
 		m_Head = null;
 	}
 
+	/**
+	 * @brief Add value to collection, automatically creating a wrapping node
+	 */
 	CF_DoublyLinkedNode<T> Add(T value)
 	{
 		auto node = new CF_DoublyLinkedNode<T>(value);
@@ -29,6 +54,9 @@ class CF_DoublyLinkedNodes<Class T>
 		return node;
 	}
 
+	/**
+	 * @brief Add node to collection
+	 */
 	void Add(CF_DoublyLinkedNode<T> node)
 	{
 #ifdef CF_TRACE_ENABLED
@@ -46,6 +74,9 @@ class CF_DoublyLinkedNodes<Class T>
 #endif
 	}
 
+	/**
+	 * @brief Remove node from collection
+	 */
 	void Remove(CF_DoublyLinkedNode<T> node)
 	{
 #ifdef CF_TRACE_ENABLED

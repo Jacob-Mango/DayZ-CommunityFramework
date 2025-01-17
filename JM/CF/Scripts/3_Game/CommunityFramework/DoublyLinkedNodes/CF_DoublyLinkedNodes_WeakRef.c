@@ -1,4 +1,26 @@
-//! @brief a collection of doubly linked nodes (doubly linked list)
+/**
+ * @brief a collection of doubly linked nodes (doubly linked list), weakref variant
+ * 
+ * @code
+ *  modded class CarScript
+ *  {
+ *      static ref CF_DoublyLinkedNodes_WeakRef<CarScript> s_All = new CF_DoublyLinkedNodes_WeakRef<CarScript>();
+ * 
+ *      ref CF_DoublyLinkedNode_WeakRef<CarScript> m_Node;
+ *  
+ *      void CarScript()
+ *      {
+ *          m_Node = s_All.Add(this);
+ *      }
+ *  
+ *      void ~CarScript()
+ *      {
+ *          if (s_All)
+ *              s_All.Remove(m_Node);
+ *      }
+ *  }
+ * @endcode
+*/
 class CF_DoublyLinkedNodes_WeakRef<Class T>
 {
 	ref CF_DoublyLinkedNode_WeakRef<T> m_Head;
@@ -20,6 +42,9 @@ class CF_DoublyLinkedNodes_WeakRef<Class T>
 		m_Head = null;
 	}
 
+	/**
+	 * @brief Add value to collection, automatically creating a wrapping node
+	 */
 	CF_DoublyLinkedNode_WeakRef<T> Add(T value)
 	{
 		auto node = new CF_DoublyLinkedNode_WeakRef<T>(value);
@@ -29,6 +54,9 @@ class CF_DoublyLinkedNodes_WeakRef<Class T>
 		return node;
 	}
 
+	/**
+	 * @brief Add node to collection
+	 */
 	void Add(CF_DoublyLinkedNode_WeakRef<T> node)
 	{
 #ifdef CF_TRACE_ENABLED
@@ -46,6 +74,9 @@ class CF_DoublyLinkedNodes_WeakRef<Class T>
 #endif
 	}
 
+	/**
+	 * @brief Remove node from collection
+	 */
 	void Remove(CF_DoublyLinkedNode_WeakRef<T> node)
 	{
 #ifdef CF_TRACE_ENABLED

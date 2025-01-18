@@ -4,7 +4,7 @@
  * @code
  *  class Example
  *  {
- *      static ref CF_DoublyLinkedNodes<Example> s_All = new CF_DoublyLinkedNodes<CarScript>();
+ *      static ref CF_DoublyLinkedNodes<Example> s_All = new CF_DoublyLinkedNodes<Example>();
  * 
  *      ref CF_DoublyLinkedNode<Example> m_Node;
  *  

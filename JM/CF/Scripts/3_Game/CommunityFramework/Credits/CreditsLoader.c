@@ -65,7 +65,7 @@ modded class CreditsLoader
 		}
 		else
 		{
-			CF_Log.Warn(errorMessage);
+			CF_Log.Warn("%1: %2", JSON_FILE_PATH, errorMessage);
 		}
 
 		return data;

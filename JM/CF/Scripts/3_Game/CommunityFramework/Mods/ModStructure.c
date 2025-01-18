@@ -70,7 +70,7 @@ modded class ModStructure
 
 				string errorMessage;
 				if (!JsonFileLoader<JsonDataCredits>.LoadFile(creditsPath, m_CF_Credits, errorMessage))
-					CF_Log.Warn(errorMessage);
+					CF_Log.Warn("%1: %2", creditsPath, errorMessage);
 			}
 			else if (GetGame().ConfigIsExisting(m_ModPath + " credits"))
 			{

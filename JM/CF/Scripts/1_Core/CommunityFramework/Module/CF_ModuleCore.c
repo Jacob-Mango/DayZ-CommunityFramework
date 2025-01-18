@@ -4,6 +4,8 @@ class CF_ModuleCore : Managed
 
 	int m_CF_GameFlag;
 
+	ref array<CF_ModuleCoreEvent> m_Events = {};
+
 	void CF_ModuleCore()
 	{
 #ifdef CF_TRACE_ENABLED
@@ -16,6 +18,15 @@ class CF_ModuleCore : Managed
 #ifdef CF_TRACE_ENABLED
 		auto trace = CF_Trace_0(this, "~CF_ModuleCore");
 #endif
+
+
+	#ifndef DAYZ_1_26
+		//! 1.27+
+		foreach (CF_ModuleCoreEvent evt: m_Events)
+		{
+			evt.m_Prev.m_Next = evt.m_Next;
+		}
+	#endif
 	}
 
 	bool IsServer()

@@ -2,6 +2,7 @@ class CF_ModuleCoreEvent
 {
 	ref CF_ModuleCore m_Value;
 
+	CF_ModuleCoreEvent m_Prev;
 	ref CF_ModuleCoreEvent m_Next;
 
 	void CF_ModuleCoreEvent(CF_ModuleCore module = null)
@@ -25,6 +26,12 @@ class CF_ModuleCoreEvent
 			current = next;
 			next = next.m_Next;
 		}
+
+	#ifndef DAYZ_1_26
+		//! 1.27+
+		newEvent.m_Prev = current;
+		module.m_Events.Insert(newEvent);
+	#endif
 
 		current.m_Next = newEvent;
 	}

@@ -5,6 +5,15 @@
  */
 class JMModuleBase : CF_ModuleWorld
 {
+#ifndef DAYZ_1_26
+	//! 1.27+
+	void ~JMModuleBase()
+	{
+		if (g_JMModuleManager)
+			g_JMModuleManager.RemoveModule(this);
+	}
+#endif
+
 	/**
 	 * Any module that inherits from 'JMModuleBase' probably expects all events to be enabled
 	 */

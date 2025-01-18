@@ -4,7 +4,7 @@ class CF_ModuleCore : Managed
 
 	int m_CF_GameFlag;
 
-	ref array<CF_ModuleCoreEvent> m_Events = {};
+	ref array<ref CF_ModuleCoreEvent> m_Events = {};
 
 	void CF_ModuleCore()
 	{

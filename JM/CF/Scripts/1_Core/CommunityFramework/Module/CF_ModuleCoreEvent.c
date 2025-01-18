@@ -1,4 +1,4 @@
-class CF_ModuleCoreEvent
+class CF_ModuleCoreEvent: Managed
 {
 	ref CF_ModuleCore m_Value;
 

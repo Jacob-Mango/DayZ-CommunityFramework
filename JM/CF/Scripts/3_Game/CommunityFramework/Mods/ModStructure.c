@@ -68,7 +68,9 @@ modded class ModStructure
 				string creditsPath;
 				GetGame().ConfigGetText(m_ModPath + " creditsJson", creditsPath);
 
-				JsonFileLoader<JsonDataCredits>.JsonLoadFile(creditsPath, m_CF_Credits);
+				string errorMessage;
+				if (!JsonFileLoader<JsonDataCredits>.LoadFile(creditsPath, m_CF_Credits, errorMessage))
+					CF_Log.Warn(errorMessage);
 			}
 			else if (GetGame().ConfigIsExisting(m_ModPath + " credits"))
 			{

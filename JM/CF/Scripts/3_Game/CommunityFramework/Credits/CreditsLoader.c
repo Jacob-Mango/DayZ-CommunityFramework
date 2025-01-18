@@ -55,11 +55,18 @@ modded class CreditsLoader
 
 		// Append DayZ Game Credits
 		JsonDataCredits dayzCreditsData;
-		JsonFileLoader<ref JsonDataCredits>.JsonLoadFile(JSON_FILE_PATH, dayzCreditsData);
-		foreach (auto dayzDepartment : dayzCreditsData.Departments)
+		string errorMessage;
+		if (JsonFileLoader<ref JsonDataCredits>.LoadFile(JSON_FILE_PATH, dayzCreditsData, errorMessage))
 		{
-			data.Departments.Insert(dayzDepartment);
-		};
+			foreach (auto dayzDepartment : dayzCreditsData.Departments)
+			{
+				data.Departments.Insert(dayzDepartment);
+			}
+		}
+		else
+		{
+			CF_Log.Warn(errorMessage);
+		}
 
 		return data;
 	}

@@ -4,7 +4,7 @@ class CF_ModuleCore : Managed
 
 	int m_CF_GameFlag;
 
-	ref array<ref CF_ModuleCoreEvent> m_Events = {};
+	ref array<CF_ModuleCoreEvent> m_Events = {};
 
 	void CF_ModuleCore()
 	{
@@ -24,7 +24,8 @@ class CF_ModuleCore : Managed
 		//! 1.27+
 		foreach (CF_ModuleCoreEvent evt: m_Events)
 		{
-			evt.m_Prev.m_Next = evt.m_Next;
+			if (evt.m_Prev)
+				evt.m_Prev.m_Next = evt.m_Next;
 		}
 	#endif
 	}
